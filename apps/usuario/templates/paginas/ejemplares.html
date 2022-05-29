@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block ejemplares %}
+
+{% if ejemplares %}
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Codigo</th>
+            <th scope="col">Ubicacion</th>
+            <th scope="col">Editar/Eliminar</th>
+
+        </tr>
+        </thead>
+
+        {% for i in ejemplares %}
+        
+        <tbody>
+            <tr class="table-active">
+            <th scope="row">{{i.id}}</th>
+            <td>{{i.codigolibro}}</td>
+            <td>{{i.localizacion}}</td>
+            <td>
+                <a href="{% url 'eupdate' i.id %}" class="btn btn-primary">Editar</a>
+                <a href="{% url 'edelete' i.id %}" class="btn btn-primary">Eliminar</a>
+            </td>
+            </tr>
+            <tr>
+        </tbody>
+    {% endfor %}
+  </table>
+
+{% else %}
+<h1>No Existen Registros</h1>
+{% endif %}
+  <a href="{% url 'ecreate' %}" class="btn btn-primary">AÑADIR</a>
+{% endblock ejemplares %}

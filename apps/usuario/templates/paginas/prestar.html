@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block prestar %}
+
+{% if prestar %}
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Fecha de devolucion</th>
+            <th scope="col">Fecha de prestamo</th>
+            <th scope="col">Usuarioid</th>
+            <th scope="col">Ejemplaresid</th>
+            <th scope="col">Editar/Eliminar</th>
+
+        </tr>
+        </thead>
+
+        {% for i in prestar %}
+        
+        <tbody>
+            <tr class="table-active">
+            <th scope="row">{{i.id}}</th>
+            <td>{{i.fechadev}}</td>
+            <td>{{i.fechapres}}</td>
+            <td>{{i.usuarioid}}</td>
+            <td>{{i.ejemplaresid}}</td>
+            <td>
+                <a href="{% url 'pupdate' i.id %}" class="btn btn-primary">Editar</a>
+                <a href="{% url 'pdelete' i.id %}" class="btn btn-primary">Eliminar</a>
+            </td>
+            </tr>
+            <tr>
+        </tbody>
+    {% endfor %}
+  </table>
+
+{% else %}
+<h1>No Existen Registros</h1>
+{% endif %}
+  <a href="{% url 'pcreate' %}" class="btn btn-primary">AÑADIR</a>
+{% endblock prestar %}
